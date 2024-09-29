@@ -5,5 +5,3 @@ This online notebook details statistlcal analyses conducted for the comparison b
 ::: {.callout-note appearance="simple" icon="false"}
 Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, "Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank", *in review*.
 :::
-
-## Abstract
