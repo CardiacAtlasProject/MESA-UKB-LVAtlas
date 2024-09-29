@@ -1,0 +1,21 @@
+project:
+  type: book
+
+book:
+  title: "MESA-UKB-LVAtlas"
+  author: "Avan Suinesiaputra"
+  date: "09/29/2024"
+  chapters:
+    - index.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
