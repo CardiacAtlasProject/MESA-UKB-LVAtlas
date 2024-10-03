@@ -1,0 +1,77 @@
+---
+execute: 
+  echo: false
+---
+
+# PLSR Training
+
+In Partial Least Square Regression (PLSR), we want to estimate a linear combination of $\mathbf{z}_1, \mathbf{z}_2, \ldots, \mathbf{z}_k$ that are good predictors for both the input $\mathbf{X}\in\mathbb{R}^{n\times p}$ and the response $\mathbf{y}\in\mathbb{R}^{n}$. The PLSR linear relationships can be written as
+
+$$
+\begin{split}
+\mathbf{X} &= \mathbf{Z}\mathbf{V}^T + \mathbf{E} \\
+\mathbf{y} &= \mathbf{Z}\mathbf{b} + \mathbf{e}
+\end{split}
+$$
+
+where $\mathbf{Z}\in\mathbb{R}^{n\times k}$ are the *PLS scores*, $\mathbf{V}\in\mathbb{R}^{k\times p}$ are the *PLS loadings*, and $\mathbf{b}\in\mathbb{R}^{k}$ are the *PLS coefficients*. The terms $\mathbf{E}$ and $\mathbf{e}$ are the residual matrices for both input and response, respectively. The scalars $n$, $p$, and $k$ denote the number of samples, input predictors, and **PLS components**.
+
+Hence, to build a PLSR model, we need the number of PLS components, or $k$, and that's what we do the PLSR training.
+
+In this paper,
+
+-   The input predictor $\mathbf{X}$ contains `age`, `sex`, and the first $m$ principal components from the LV shape atlas. The number of $m$ depends on the cohort: MESA or UKBB.
+-   The response $\mathbf{y}$ is a binary variable to denote the presence of a risk (=0) or not (=1). Five cardiovacular risk factors were used: hypertension, diabetes, obesity, hypercholesterolemia, and smoking.
+
+## k-Folds Cross Validation
+
+We used five-fold cross validation to determine the optimal number of PLSR components. We did this for each cohort and for each risk factor. The general function to perform the k-fold cross validation for PLSR training is given below:
+
+``` r
+train_pls <- function(form, dt, n_folds=5, n_comps=30, 
+                      prep=c("center"), probMethod="softmax")
+{
+  # create frequency table to calculate the weights
+  response <- model.frame(form, data=dt)[[form[[2]]]]
+  
+  # create cross-validation folds
+  cvIndex <- createFolds(factor(response), n_folds, returnTrain = T) 
+  
+  # create caret's training controller
+  ctrl <- trainControl(method = "cv",
+                       index = cvIndex,
+                       classProbs = TRUE,
+                       verboseIter=TRUE,
+                       summaryFunction = twoClassSummary,
+                       savePredictions = TRUE,
+                       allowParallel = TRUE) 
+  
+  # train using PLS, metric is ROC.
+  # Note that the number of PLS modes is given in the tuneLength argument.
+  model <- train(form=form,
+                 data=dt,
+                 method="pls",
+                 probMethod=probMethod,
+                 metric="ROC",
+                 tuneLength = n_comps,
+                 preProc = prep,
+                 trControl = ctrl)
+  
+  return(model)
+}
+```
+
+## Training results
+
+1.  MESA atlas
+    a.  [Hypertension](pages/PLS_MESA_Hypertension.html)
+    b.  [Diabetes](pages/PLS_MESA_Diabetes.html)
+    c.  [Obesity](pages/PLS_MESA_Obesity.html)
+    d.  [Hypercholesterolemia](pages/PLS_MESA_Hypercholesterolemia.html)
+    e.  [Smoking](pages/PLS_MESA_Smoking.html)
+2.  UKBB atlas
+    a.  [Hypertension](pages/PLS_UKBB_Hypertension.html)
+    b.  [Diabetes](pages/PLS_UKBB_Diabetes.html)
+    c.  [Obesity](pages/PLS_UKBB_Obesity.html)
+    d.  [Hypercholsterolemia](pages/PLS_UKBB_Hypercholesterolemia.html)
+    e.  [Smoking](pages/PLS_UKBB_Smoking.html)

@@ -1,7 +1,15 @@
 # About {.unnumbered}
 
-This online notebook details statistlcal analyses conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online supplementary material for the following paper:
+This online notebook details atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:
 
 ::: {.callout-note appearance="simple" icon="false"}
 Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, "Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank", *in review*.
 :::
+
+# Data availability
+
+The MESA CMR images and their clinical and demographic data used in this study were available on request to the MESA Coordinating Centre at <https://www.mesa-nhlbi.org.> The UK Biobank CMR images and their clinical and demographic data used in this study were available on request to the UK Biobank at <https://www.ukbiobank.ac.uk.> The principal components of both MESA and UK Biobank derived in this study to build the PLSR model are available from the Cardiac Atlas Project website <https://www.cardiacatlas.org.>
+
+# Funding
+
+This research was funded by the Health Research Council of New Zealand (17/608 and 17/234), and supported by the Innovate UK (104691) London Medical Imaging & Artificial Intelligence Centre for Value Based Healthcare with the core funding from the Wellcome/EPSRC Centre for Medical Engineering [WT203148/Z/16/Z] and Wellcome Trust Innovator award number 222678/Z/21/Z.

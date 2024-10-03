@@ -7,6 +7,7 @@ book:
   date: "09/29/2024"
   chapters:
     - index.qmd
+    - training.qmd
 
 format:
   html:
