@@ -38,5 +38,15 @@
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>PLSR Training</span>"
     ]
+  },
+  {
+    "objectID": "validation.html",
+    "href": "validation.html",
+    "title": "2  PLSR Validation",
+    "section": "",
+    "text": "There are two types of validation: internal (within-cohort), and external (cross-cohort) validations. For the internal validation, a leave-one-out cross validation was used to build the final PLSR model across the whole cohort population. For the external validation, the PLSR model was built using all training case samples. For both internal and external validations, we used the optimal number of PLSR component computed during the traing.\nValidation results:\n\nMESA atlas\n\nHypertension\nDiabetes\nObesity\nHypercholesterolemia\nSmoking\n\nUKBB atlas\n\nHypertension\nDiabetes\nObesity\nHypercholsterolemia\nSmoking",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>PLSR Validation</span>"
+    ]
   }
 ]

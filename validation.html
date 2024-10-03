@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Avan Suinesiaputra">
-<meta name="dcterms.date" content="2024-09-29">
 
-<title>MESA-UKB-LVAtlas</title>
+<title>2&nbsp; PLSR Validation – MESA-UKB-LVAtlas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./training.html" rel="next">
+<link href="./training.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">About</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./validation.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Validation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -109,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">About</span></a>
   </div>
 </li>
@@ -121,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./validation.html" class="sidebar-item-text sidebar-link">
+  <a href="./validation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Validation</span></span></a>
   </div>
 </li>
@@ -130,42 +128,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a></li>
-  <li><a href="#data-availability" id="toc-data-availability" class="nav-link" data-scroll-target="#data-availability">Data availability</a></li>
-  <li><a href="#funding" id="toc-funding" class="nav-link" data-scroll-target="#funding">Funding</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MESA-UKB-LVAtlas</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Validation</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Avan Suinesiaputra </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 29, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -175,30 +153,28 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="about" class="level1 unnumbered">
-<h1 class="unnumbered">About</h1>
-<p>This online notebook details atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:</p>
-<div class="callout callout-style-simple callout-note no-icon">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, “Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank”, <em>in review</em>.</p>
-</div>
-</div>
-</div>
-</section>
-<section id="data-availability" class="level1">
-<h1>Data availability</h1>
-<p>The MESA CMR images and their clinical and demographic data used in this study were available on request to the MESA Coordinating Centre at <a href="https://www.mesa-nhlbi.org." class="uri">https://www.mesa-nhlbi.org.</a> The UK Biobank CMR images and their clinical and demographic data used in this study were available on request to the UK Biobank at <a href="https://www.ukbiobank.ac.uk." class="uri">https://www.ukbiobank.ac.uk.</a> The principal components of both MESA and UK Biobank derived in this study to build the PLSR model are available from the Cardiac Atlas Project website <a href="https://www.cardiacatlas.org." class="uri">https://www.cardiacatlas.org.</a></p>
-</section>
-<section id="funding" class="level1">
-<h1>Funding</h1>
-<p>This research was funded by the Health Research Council of New Zealand (17/608 and 17/234), and supported by the Innovate UK (104691) London Medical Imaging &amp; Artificial Intelligence Centre for Value Based Healthcare with the core funding from the Wellcome/EPSRC Centre for Medical Engineering [WT203148/Z/16/Z] and Wellcome Trust Innovator award number 222678/Z/21/Z.</p>
+<p>There are two types of validation: <em>internal</em> (within-cohort), and <em>external</em> (cross-cohort) validations. For the internal validation, a leave-one-out cross validation was used to build the final PLSR model across the whole cohort population. For the external validation, the PLSR model was built using all training case samples. For both internal and external validations, we used the optimal number of PLSR component computed during the traing.</p>
+<p>Validation results:</p>
+<ol type="1">
+<li>MESA atlas
+<ol type="a">
+<li><a href="pages/Val_MESA_Hypertension.html">Hypertension</a></li>
+<li><a href="pages/Val_MESA_Diabetes.html">Diabetes</a></li>
+<li><a href="pages/Val_MESA_Obesity.html">Obesity</a></li>
+<li><a href="pages/Val_MESA_Hypercholesterolemia.html">Hypercholesterolemia</a></li>
+<li><a href="pages/Val_MESA_Smoking.html">Smoking</a></li>
+</ol></li>
+<li>UKBB atlas
+<ol type="a">
+<li><a href="pages/Val_UKBB_Hypertension.html">Hypertension</a></li>
+<li><a href="pages/Val_UKBB_Diabetes.html">Diabetes</a></li>
+<li><a href="pages/Val_UKBB_Obesity.html">Obesity</a></li>
+<li><a href="pages/Val_UKBB_Hypercholesterolemia.html">Hypercholsterolemia</a></li>
+<li><a href="pages/Val_UKBB_Smoking.html">Smoking</a></li>
+</ol></li>
+</ol>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -623,11 +599,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./training.html" class="pagination-link" aria-label="PLSR Training">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">PLSR Training</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./training.html" class="pagination-link" aria-label="PLSR Training">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">PLSR Training</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
