@@ -8,6 +8,7 @@ book:
   chapters:
     - index.qmd
     - training.qmd
+    - validation.qmd
 
 format:
   html:
