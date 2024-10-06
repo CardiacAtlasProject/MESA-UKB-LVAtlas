@@ -23,6 +23,12 @@ In this paper,
 -   The input predictor $\mathbf{X}$ contains `age`, `sex`, and the first $m$ principal components from the LV shape atlas. The number of $m$ depends on the cohort: MESA or UKBB.
 -   The response $\mathbf{y}$ is a binary variable to denote the presence of a risk (=0) or not (=1). Five cardiovacular risk factors were used: hypertension, diabetes, obesity, hypercholesterolemia, and smoking.
 
+::: callout-note
+## Implementation note
+
+Codes are writtin in R language. PLSR training is provided by the [`caret`](https://topepo.github.io/caret/) package and the ROC analysis by [`pROC`](https://xrobin.github.io/pROC/) package. We also use [`tidyverse`](https://www.tidyverse.org/) set of packages for data frame manipulations.
+:::
+
 ## k-Folds Cross Validation
 
 We used five-fold cross validation to determine the optimal number of PLSR components. We did this for each cohort and for each risk factor. The general function to perform the k-fold cross validation for PLSR training is given below:
@@ -63,15 +69,18 @@ train_pls <- function(form, dt, n_folds=5, n_comps=30,
 
 ## Training results
 
-1.  MESA atlas
-    a.  [Hypertension](pages/PLS_MESA_Hypertension.html)
-    b.  [Diabetes](pages/PLS_MESA_Diabetes.html)
-    c.  [Obesity](pages/PLS_MESA_Obesity.html)
-    d.  [Hypercholesterolemia](pages/PLS_MESA_Hypercholesterolemia.html)
-    e.  [Smoking](pages/PLS_MESA_Smoking.html)
-2.  UKBB atlas
-    a.  [Hypertension](pages/PLS_UKBB_Hypertension.html)
-    b.  [Diabetes](pages/PLS_UKBB_Diabetes.html)
-    c.  [Obesity](pages/PLS_UKBB_Obesity.html)
-    d.  [Hypercholsterolemia](pages/PLS_UKBB_Hypercholesterolemia.html)
-    e.  [Smoking](pages/PLS_UKBB_Smoking.html)
+### MESA atlas
+
+a.  [Hypertension](pages/PLS_MESA_Hypertension.html)
+b.  [Diabetes](pages/PLS_MESA_Diabetes.html)
+c.  [Obesity](pages/PLS_MESA_Obesity.html)
+d.  [Hypercholesterolemia](pages/PLS_MESA_Hypercholesterolemia.html)
+e.  [Smoking](pages/PLS_MESA_Smoking.html)
+
+### UKBB atlas
+
+a.  [Hypertension](pages/PLS_UKBB_Hypertension.html)
+b.  [Diabetes](pages/PLS_UKBB_Diabetes.html)
+c.  [Obesity](pages/PLS_UKBB_Obesity.html)
+d.  [Hypercholsterolemia](pages/PLS_UKBB_Hypercholesterolemia.html)
+e.  [Smoking](pages/PLS_UKBB_Smoking.html)
