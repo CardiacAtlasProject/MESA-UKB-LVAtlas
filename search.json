@@ -4,49 +4,109 @@
     "href": "index.html",
     "title": "MESA-UKB-LVAtlas",
     "section": "",
-    "text": "About\nThis online notebook details atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:\n\n\n\n\n\n\nAvan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, “Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank”, in review.\n\n\n\n\n\nData availability\nThe MESA CMR images and their clinical and demographic data used in this study were available on request to the MESA Coordinating Centre at https://www.mesa-nhlbi.org. The UK Biobank CMR images and their clinical and demographic data used in this study were available on request to the UK Biobank at https://www.ukbiobank.ac.uk. The principal components of both MESA and UK Biobank derived in this study to build the PLSR model are available from the Cardiac Atlas Project website https://www.cardiacatlas.org.\n\n\nFunding\nThis research was funded by the Health Research Council of New Zealand (17/608 and 17/234), and supported by the Innovate UK (104691) London Medical Imaging & Artificial Intelligence Centre for Value Based Healthcare with the core funding from the Wellcome/EPSRC Centre for Medical Engineering [WT203148/Z/16/Z] and Wellcome Trust Innovator award number 222678/Z/21/Z.",
+    "text": "About\nThis online notebook details atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:\n\n\n\n\n\n\nAvan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, “Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank”, in review.\n\n\n\n\n\nData availability\nThe MESA CMR images and their clinical and demographic data used in this study are available on request to the MESA Coordinating Centre at https://www.mesa-nhlbi.org. The UK Biobank CMR images and their clinical and demographic data used in this study are available on request to the UK Biobank at https://www.ukbiobank.ac.uk. The principal components of both MESA and UK Biobank derived in this study to build the PLSR model are available from the Cardiac Atlas Project website https://www.cardiacatlas.org.\n\n\nFunding\nThis research was funded by the Health Research Council of New Zealand (17/608 and 17/234), and supported by the Innovate UK (104691) London Medical Imaging & Artificial Intelligence Centre for Value Based Healthcare with the core funding from the Wellcome/EPSRC Centre for Medical Engineering [WT203148/Z/16/Z] and Wellcome Trust Innovator award number 222678/Z/21/Z.",
     "crumbs": [
       "About"
     ]
   },
   {
+    "objectID": "lvatlas.html",
+    "href": "lvatlas.html",
+    "title": "1  LV Shape Atlas",
+    "section": "",
+    "text": "1.1 Mean shape estimation\nThe shape2point function convert \\(3m\\) elements of a shape vector into \\(m\\times 3\\) matrix:\nThe point2shape function convert back \\(m\\times 3\\) coordinate point matrix into \\(3m\\) elements of a shape vector:",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>LV Shape Atlas</span>"
+    ]
+  },
+  {
+    "objectID": "lvatlas.html#mean-shape-estimation",
+    "href": "lvatlas.html#mean-shape-estimation",
+    "title": "1  LV Shape Atlas",
+    "section": "",
+    "text": "function cc_mean = mean_shape(S, varargin)\n% Align all shapes\nnshapes = size(S,1);\n\n% default values\nopts.max_iter = 10;\nopts.error_bound = 1e-16;\nopts.mean_shape = NaN;\n\n% get the options\nfor i=1:2:length(varargin)\n    if isfield(opts, lower(varargin{i}))\n        opts.(lower(varargin{i})) = varargin{i+1};\n    else\n        error('Unknown option %s', varargin{i});\n    end\nend\n\n% get the mean shape to align\ncc_mean = opts.mean_shape;\nif isnan(cc_mean)\n    % get random shape as the first mean\n    cc_mean = S(randsample(nshapes, 1), :);\nend\n\n% start the iteration\nfinish = false;\niter = 0;\nwhile ~finish && iter&lt;opts.max_iter\n    iter = iter + 1;\n\n    % procrustes distance from each shape to the mean\n    Pm = shape2points(cc_mean);\n    for i=1:nshapes\n    \n        P = shape2points(S(i,:));\n        [~, Z] = procrustes(Pm, P, 'reflection', false, 'scaling', false);\n    \n        % assign\n        S(i,:) = points2shape(Z);\n    \n    end\n    \n    % calculate the next mean\n    next_mean = mean(S);\n    next_Pm = shape2points(next_mean(1,:));\n    \n    % distance between mean\n    d_mean = procrustes(Pm, next_Pm);\n    fprintf(1, '%d: mean distance = %g\\n', iter, abs(d_mean));\n\n    if d_mean&lt;opts.error_bound\n        finish = true;\n    else\n        % update\n        cc_mean = next_mean(1,:);\n    end\nend\n\nfunction P = shape2points(S)\n  % convert a shape vector to 3D point coordinates\n  P = reshape(permute(reshape(S, [], 3, 2), [1 3 2]), [], 3);\nend\n\nfunction S = points2shape(P)\n    % converte 3D point coordinates into a single shape vector\n    S = reshape(permute(reshape(P, [], 2, 3), [1 3 2]), 1, []);\nend",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>LV Shape Atlas</span>"
+    ]
+  },
+  {
+    "objectID": "lvatlas.html#plot-an-lv-shape",
+    "href": "lvatlas.html#plot-an-lv-shape",
+    "title": "1  LV Shape Atlas",
+    "section": "1.2 Plot an LV shape",
+    "text": "1.2 Plot an LV shape\nTo plot an LV shape as surfaces, you need the following mesh connection matrix: faces.mat. Here’s an example of plotting a mean_shape as two LV shapes at ED and ES.\n% Let:\n%   mean_shape = 3140x3 matrix of the estimated mean shape\nnpoints = size(mean_shape,1) / 4;\n\n% load the face triangles\nfaces = importdata(\"faces.mat\");\n\n% endo & epicardial faces\nf_endo = faces;\nf_epi = faces + npoints;\n\n% plot ED shapes\nfigure('Color', 'w');\nax1 = subplot(1,2,1);\n\nS_ed = mean_shape(1:(2*npoints),:);\nh1 = trisurf([f_endo; f_epi], S_ed(:,1), S_ed(:,2), S_ed(:,3));\naxis equal;\nax1.View = [-90, -80];\ntitle('MEAN SHAPE at ED');\n\n% plot ES shapes\nax2 = subplot(1,2,2);\nS_es = mean_shape((2*npoints+1):end,:);\nh2 = trisurf([f_endo; f_epi], S_es(:,1), S_es(:,2), S_es(:,3));\naxis equal;\nax2.View = [-90, -80];\ntitle('MEAN SHAPE at ES');\n\n% link axes & camera position\nlinkaxes([ax1, ax2]);\nhlink = linkprop([ax1,ax2],{'CameraPosition','CameraUpVector'});\ncamorbit(10,0, 'data', [1, 0, 0]);\n\n\n\nPlotting a mean shape",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>LV Shape Atlas</span>"
+    ]
+  },
+  {
+    "objectID": "lvatlas.html#pca-calculation",
+    "href": "lvatlas.html#pca-calculation",
+    "title": "1  LV Shape Atlas",
+    "section": "1.3 PCA calculation",
+    "text": "1.3 PCA calculation\n% Let:\n% S = n x 3m shape matrix\n% mean_shape = the estimated mean shape\n% output_folder is the folder to save the PCA components\n\n% subtract each shape by the the mean_shape\nS0 = S - repmat(mean_shape, size(S, 1), 1);\n\n% calculate PCA\n[coeff, score, latent, ~, explained, ~] = pca(S0);\n\n%% some tests\nncomps = find(cumsum(explained)&lt;99.9, 1, 'last');\nfprintf(1, \"Number of components covering 99.9%% = %g\\n\", ncomps);\n\nfigure;\nplot(cumsum(explained(1:ncomps)));\n\n%% save PCA\nsave(fullfile(output_folder, \"PCA_coeff.mat\"), \"coeff\");\nsave(fullfile(output_folder, \"PCA_explained.mat\"), \"explained\");\nsave(fullfile(output_folder, \"PCA_latent.mat\"), \"latent\");\nsave(fullfile(output_folder, \"PCA_score.mat\"), \"score\");\nThe first 4 PCA modes of variations (±2.5 standard deviation from the mean shape) from MESA and UK Biobank studies used in the paper:",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>LV Shape Atlas</span>"
+    ]
+  },
+  {
     "objectID": "training.html",
     "href": "training.html",
-    "title": "1  PLSR Training",
+    "title": "2  PLSR Training",
     "section": "",
-    "text": "1.1 k-Folds Cross Validation\nWe used five-fold cross validation to determine the optimal number of PLSR components. We did this for each cohort and for each risk factor. The general function to perform the k-fold cross validation for PLSR training is given below:",
+    "text": "2.1 k-Folds Cross Validation\nWe used five-fold cross validation to determine the optimal number of PLSR components. We did this for each cohort and for each risk factor. The general function to perform the k-fold cross validation for PLSR training is given below:",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>PLSR Training</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>PLSR Training</span>"
     ]
   },
   {
     "objectID": "training.html#k-folds-cross-validation",
     "href": "training.html#k-folds-cross-validation",
-    "title": "1  PLSR Training",
+    "title": "2  PLSR Training",
     "section": "",
     "text": "train_pls &lt;- function(form, dt, n_folds=5, n_comps=30, \n                      prep=c(\"center\"), probMethod=\"softmax\")\n{\n  # create frequency table to calculate the weights\n  response &lt;- model.frame(form, data=dt)[[form[[2]]]]\n  \n  # create cross-validation folds\n  cvIndex &lt;- createFolds(factor(response), n_folds, returnTrain = T) \n  \n  # create caret's training controller\n  ctrl &lt;- trainControl(method = \"cv\",\n                       index = cvIndex,\n                       classProbs = TRUE,\n                       verboseIter=TRUE,\n                       summaryFunction = twoClassSummary,\n                       savePredictions = TRUE,\n                       allowParallel = TRUE) \n  \n  # train using PLS, metric is ROC.\n  # Note that the number of PLS modes is given in the tuneLength argument.\n  model &lt;- train(form=form,\n                 data=dt,\n                 method=\"pls\",\n                 probMethod=probMethod,\n                 metric=\"ROC\",\n                 tuneLength = n_comps,\n                 preProc = prep,\n                 trControl = ctrl)\n  \n  return(model)\n}",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>PLSR Training</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>PLSR Training</span>"
     ]
   },
   {
     "objectID": "training.html#training-results",
     "href": "training.html#training-results",
-    "title": "1  PLSR Training",
-    "section": "1.2 Training results",
-    "text": "1.2 Training results\n\nMESA atlas\n\nHypertension\nDiabetes\nObesity\nHypercholesterolemia\nSmoking\n\nUKBB atlas\n\nHypertension\nDiabetes\nObesity\nHypercholsterolemia\nSmoking",
+    "title": "2  PLSR Training",
+    "section": "2.2 Training results",
+    "text": "2.2 Training results\n\n2.2.1 MESA atlas\n\nHypertension\nDiabetes\nObesity\nHypercholesterolemia\nSmoking\n\n\n\n2.2.2 UKBB atlas\n\nHypertension\nDiabetes\nObesity\nHypercholsterolemia\nSmoking",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>PLSR Training</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>PLSR Training</span>"
     ]
   },
   {
     "objectID": "validation.html",
     "href": "validation.html",
-    "title": "2  PLSR Validation",
+    "title": "3  PLSR Validation",
     "section": "",
-    "text": "There are two types of validation: internal (within-cohort), and external (cross-cohort) validations. For the internal validation, a leave-one-out cross validation was used to build the final PLSR model across the whole cohort population. For the external validation, the PLSR model was built using all training case samples. For both internal and external validations, we used the optimal number of PLSR component computed during the traing.\nValidation results:\n\nMESA atlas\n\nHypertension\nDiabetes\nObesity\nHypercholesterolemia\nSmoking\n\nUKBB atlas\n\nHypertension\nDiabetes\nObesity\nHypercholsterolemia\nSmoking",
+    "text": "3.1 MESA validation results",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>PLSR Validation</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>PLSR Validation</span>"
+    ]
+  },
+  {
+    "objectID": "validation.html#mesa-validation-results",
+    "href": "validation.html#mesa-validation-results",
+    "title": "3  PLSR Validation",
+    "section": "",
+    "text": "Hypertension\nDiabetes\nObesity\nHypercholesterolemia\nSmoking",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>PLSR Validation</span>"
+    ]
+  },
+  {
+    "objectID": "validation.html#ukbb-validation-results",
+    "href": "validation.html#ukbb-validation-results",
+    "title": "3  PLSR Validation",
+    "section": "3.2 UKBB validation results",
+    "text": "3.2 UKBB validation results\n\nHypertension\nDiabetes\nObesity\nHypercholsterolemia\nSmoking",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>PLSR Validation</span>"
     ]
   }
 ]

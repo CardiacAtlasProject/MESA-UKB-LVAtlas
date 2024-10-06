@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; PLSR Training – MESA-UKB-LVAtlas</title>
+<title>2&nbsp; PLSR Training – MESA-UKB-LVAtlas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./validation.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./lvatlas.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -144,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./training.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">PLSR Training</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./training.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Training</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,14 +177,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./lvatlas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">LV Shape Atlas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./training.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">PLSR Training</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Training</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./validation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">PLSR Validation</span></span></a>
   </div>
 </li>
     </ul>
@@ -197,8 +203,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#k-folds-cross-validation" id="toc-k-folds-cross-validation" class="nav-link active" data-scroll-target="#k-folds-cross-validation"><span class="header-section-number">1.1</span> k-Folds Cross Validation</a></li>
-  <li><a href="#training-results" id="toc-training-results" class="nav-link" data-scroll-target="#training-results"><span class="header-section-number">1.2</span> Training results</a></li>
+  <li><a href="#k-folds-cross-validation" id="toc-k-folds-cross-validation" class="nav-link active" data-scroll-target="#k-folds-cross-validation"><span class="header-section-number">2.1</span> k-Folds Cross Validation</a></li>
+  <li><a href="#training-results" id="toc-training-results" class="nav-link" data-scroll-target="#training-results"><span class="header-section-number">2.2</span> Training results</a>
+  <ul class="collapse">
+  <li><a href="#mesa-atlas" id="toc-mesa-atlas" class="nav-link" data-scroll-target="#mesa-atlas"><span class="header-section-number">2.2.1</span> MESA atlas</a></li>
+  <li><a href="#ukbb-atlas" id="toc-ukbb-atlas" class="nav-link" data-scroll-target="#ukbb-atlas"><span class="header-section-number">2.2.2</span> UKBB atlas</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -207,7 +217,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">PLSR Training</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Training</span></h1>
 </div>
 
 
@@ -238,8 +248,21 @@ window.Quarto = {
 <li>The input predictor <span class="math inline">\(\mathbf{X}\)</span> contains <code>age</code>, <code>sex</code>, and the first <span class="math inline">\(m\)</span> principal components from the LV shape atlas. The number of <span class="math inline">\(m\)</span> depends on the cohort: MESA or UKBB.</li>
 <li>The response <span class="math inline">\(\mathbf{y}\)</span> is a binary variable to denote the presence of a risk (=0) or not (=1). Five cardiovacular risk factors were used: hypertension, diabetes, obesity, hypercholesterolemia, and smoking.</li>
 </ul>
-<section id="k-folds-cross-validation" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="k-folds-cross-validation"><span class="header-section-number">1.1</span> k-Folds Cross Validation</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Implementation note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Codes are writtin in R language. PLSR training is provided by the <a href="https://topepo.github.io/caret/"><code>caret</code></a> package and the ROC analysis by <a href="https://xrobin.github.io/pROC/"><code>pROC</code></a> package. We also use <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> set of packages for data frame manipulations.</p>
+</div>
+</div>
+<section id="k-folds-cross-validation" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="k-folds-cross-validation"><span class="header-section-number">2.1</span> k-Folds Cross Validation</h2>
 <p>We used five-fold cross validation to determine the optimal number of PLSR components. We did this for each cohort and for each risk factor. The general function to perform the k-fold cross validation for PLSR training is given below:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>train_pls <span class="ot">&lt;-</span> <span class="cf">function</span>(form, dt, <span class="at">n_folds=</span><span class="dv">5</span>, <span class="at">n_comps=</span><span class="dv">30</span>, </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">prep=</span><span class="fu">c</span>(<span class="st">"center"</span>), <span class="at">probMethod=</span><span class="st">"softmax"</span>)</span>
@@ -273,28 +296,30 @@ window.Quarto = {
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(model)</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="training-results" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="training-results"><span class="header-section-number">1.2</span> Training results</h2>
-<ol type="1">
-<li>MESA atlas
+<section id="training-results" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="training-results"><span class="header-section-number">2.2</span> Training results</h2>
+<section id="mesa-atlas" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="mesa-atlas"><span class="header-section-number">2.2.1</span> MESA atlas</h3>
 <ol type="a">
 <li><a href="pages/PLS_MESA_Hypertension.html">Hypertension</a></li>
 <li><a href="pages/PLS_MESA_Diabetes.html">Diabetes</a></li>
 <li><a href="pages/PLS_MESA_Obesity.html">Obesity</a></li>
 <li><a href="pages/PLS_MESA_Hypercholesterolemia.html">Hypercholesterolemia</a></li>
 <li><a href="pages/PLS_MESA_Smoking.html">Smoking</a></li>
-</ol></li>
-<li>UKBB atlas
+</ol>
+</section>
+<section id="ukbb-atlas" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="ukbb-atlas"><span class="header-section-number">2.2.2</span> UKBB atlas</h3>
 <ol type="a">
 <li><a href="pages/PLS_UKBB_Hypertension.html">Hypertension</a></li>
 <li><a href="pages/PLS_UKBB_Diabetes.html">Diabetes</a></li>
 <li><a href="pages/PLS_UKBB_Obesity.html">Obesity</a></li>
 <li><a href="pages/PLS_UKBB_Hypercholesterolemia.html">Hypercholsterolemia</a></li>
 <li><a href="pages/PLS_UKBB_Smoking.html">Smoking</a></li>
-</ol></li>
 </ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -720,13 +745,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="About">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About</span>
+      <a href="./lvatlas.html" class="pagination-link" aria-label="LV Shape Atlas">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">LV Shape Atlas</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./validation.html" class="pagination-link" aria-label="PLSR Validation">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Validation</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">PLSR Validation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

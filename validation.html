@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; PLSR Validation – MESA-UKB-LVAtlas</title>
+<title>3&nbsp; PLSR Validation – MESA-UKB-LVAtlas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./validation.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Validation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./validation.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">PLSR Validation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -113,14 +113,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./lvatlas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">LV Shape Atlas</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./training.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">PLSR Training</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Training</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./validation.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Validation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">PLSR Validation</span></span></a>
   </div>
 </li>
     </ul>
@@ -128,15 +134,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#mesa-validation-results" id="toc-mesa-validation-results" class="nav-link active" data-scroll-target="#mesa-validation-results"><span class="header-section-number">3.1</span> MESA validation results</a></li>
+  <li><a href="#ukbb-validation-results" id="toc-ukbb-validation-results" class="nav-link" data-scroll-target="#ukbb-validation-results"><span class="header-section-number">3.2</span> UKBB validation results</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Validation</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">PLSR Validation</span></h1>
 </div>
 
 
@@ -153,28 +166,42 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>There are two types of validation: <em>internal</em> (within-cohort), and <em>external</em> (cross-cohort) validations. For the internal validation, a leave-one-out cross validation was used to build the final PLSR model across the whole cohort population. For the external validation, the PLSR model was built using all training case samples. For both internal and external validations, we used the optimal number of PLSR component computed during the traing.</p>
-<p>Validation results:</p>
-<ol type="1">
-<li>MESA atlas
+<p>There are two types of validation: <em>internal</em> (within-cohort), and <em>external</em> (cross-cohort) validations. For the internal validation, a leave-one-out cross validation was used to build the final PLSR model across the whole cohort population. For the external validation, the PLSR model was built using all training case samples. For both internal and external validations, we used the optimal number of PLSR component computed during the training.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Implementation note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Codes are writtin in R language. PLSR training is provided by the <a href="https://topepo.github.io/caret/"><code>caret</code></a> package and the ROC analysis by <a href="https://xrobin.github.io/pROC/"><code>pROC</code></a> package. We also use <a href="https://www.tidyverse.org/"><code>tidyverse</code></a> set of packages for data frame manipulations.</p>
+</div>
+</div>
+<section id="mesa-validation-results" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="mesa-validation-results"><span class="header-section-number">3.1</span> MESA validation results</h2>
 <ol type="a">
 <li><a href="pages/Val_MESA_Hypertension.html">Hypertension</a></li>
 <li><a href="pages/Val_MESA_Diabetes.html">Diabetes</a></li>
 <li><a href="pages/Val_MESA_Obesity.html">Obesity</a></li>
 <li><a href="pages/Val_MESA_Hypercholesterolemia.html">Hypercholesterolemia</a></li>
 <li><a href="pages/Val_MESA_Smoking.html">Smoking</a></li>
-</ol></li>
-<li>UKBB atlas
+</ol>
+</section>
+<section id="ukbb-validation-results" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="ukbb-validation-results"><span class="header-section-number">3.2</span> UKBB validation results</h2>
 <ol type="a">
 <li><a href="pages/Val_UKBB_Hypertension.html">Hypertension</a></li>
 <li><a href="pages/Val_UKBB_Diabetes.html">Diabetes</a></li>
 <li><a href="pages/Val_UKBB_Obesity.html">Obesity</a></li>
 <li><a href="pages/Val_UKBB_Hypercholesterolemia.html">Hypercholsterolemia</a></li>
 <li><a href="pages/Val_UKBB_Smoking.html">Smoking</a></li>
-</ol></li>
 </ol>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -600,7 +627,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./training.html" class="pagination-link" aria-label="PLSR Training">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">PLSR Training</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">PLSR Training</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
