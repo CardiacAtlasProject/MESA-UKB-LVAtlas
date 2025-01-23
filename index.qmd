@@ -1,10 +1,36 @@
 # About {.unnumbered}
 
-This online notebook details atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:
+This online notebook details code implementation for the atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:
 
 ::: {.callout-note appearance="simple" icon="false"}
-Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, "Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank", *in review*.
+Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, "Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank", *Heart* (2025).
+
+doi: [10.1136/heartjnl-2024-324658](https://doi.org/10.1136/heartjnl-2024-324658)
 :::
+
+# Abstract
+
+## **Background**
+
+Statistical shape atlases have been used in large-cohort studies to investigate relationships between heart shape and risk factors. The generalisability of these relationships between cohorts is unknown. The aims of this study were to compare left ventricular (LV) shapes in patients with differing cardiovascular risk factor profiles from two cohorts and to investigate whether LV shape scores generated with respect to a reference cohort can be directly used to study shape differences in another cohort.
+
+## **Methods**
+
+Two cardiac MRI cohorts were included: 2106 participants (median age: 65 years, 54% women) from the Multi-Ethnic Study of Atherosclerosis (MESA) and 2960 participants (median age: 64 years, 52% women) from the UK Biobank (UKB) study. LV shape atlases were constructed from 3D LV models derived from expert-drawn contours from separate core labs. Atlases were considered generalisable for a risk factor if the area under the receiver operating characteristic curves (AUC) were not significantly different (p\>0.05) between internal (within-cohort) and external (cross-cohort) cases.
+
+## **Results**
+
+LV mass and volume indices were differed significantly between cohorts,even in age-matched and sex-matched cases without risk factors, partly reflecting different core lab analysis protocols. For the UKB atlas, internal and external discriminative performance were not significantly different for hypertension (AUC: 0.77 vs 0.76, p=0.37), diabetes (AUC: 0.79 vs 0.77, p=0.48), hypercholesterolaemia (AUC: 0.76 vs 0.79, p=0.38)and smoking (AUC: 0.69 vs 0.67, p=0.18). For the MESA atlas, diabetes (AUC: 0.79 vs 0.74, p=0.09) and hypercholesterolaemia (AUC: 0.75 vs 0.70, p=0.10) were not significantly different. Both atlases showed significant differences for obesity.
+
+## **Conclusions**
+
+The MESA and UKB atlases demonstrated good generalisability for diabetes and hypercholesterolaemia, without requiring corrections for differences in mass and volume. Significant differences in obesity may be due to different relationships between obesity and heart shapes between cohorts.
+
+# Source codes
+
+1.  [Generating LV shape atlases](lvatlas.qmd) (MATLAB)
+2.  [Training Partial Least Square Regression models](training.qmd) (R)
+3.  [Internal and external validations](validation.qmd) (R)
 
 # Data availability
 

@@ -4,9 +4,11 @@
 
 This is the source code for statistical analyses for the supplementary material of the following paper:
 
-> Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, "Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank", *in review*.
+> Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, "Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank", *Heart* (2025).
+>
+> doi: [10.1136/heartjnl-2024-324658](https://doi.org/10.1136/heartjnl-2024-324658)
 
-Online presentation is available on <https://cardiacatlasproject.github.io/MESA-UKB-LVAtlas/>.
+Source codes are described online from: <https://cardiacatlasproject.github.io/MESA-UKB-LVAtlas/>.
 
 ## Develop
 
