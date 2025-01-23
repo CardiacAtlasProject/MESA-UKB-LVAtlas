@@ -4,7 +4,47 @@
     "href": "index.html",
     "title": "MESA-UKB-LVAtlas",
     "section": "",
-    "text": "About\nThis online notebook details atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:\n\n\n\n\n\n\nAvan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, “Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank”, in review.\n\n\n\n\n\nData availability\nThe MESA CMR images and their clinical and demographic data used in this study are available on request to the MESA Coordinating Centre at https://www.mesa-nhlbi.org. The UK Biobank CMR images and their clinical and demographic data used in this study are available on request to the UK Biobank at https://www.ukbiobank.ac.uk. The principal components of both MESA and UK Biobank derived in this study to build the PLSR model are available from the Cardiac Atlas Project website https://www.cardiacatlas.org.\n\n\nFunding\nThis research was funded by the Health Research Council of New Zealand (17/608 and 17/234), and supported by the Innovate UK (104691) London Medical Imaging & Artificial Intelligence Centre for Value Based Healthcare with the core funding from the Wellcome/EPSRC Centre for Medical Engineering [WT203148/Z/16/Z] and Wellcome Trust Innovator award number 222678/Z/21/Z.",
+    "text": "About\nThis online notebook details code implementation for the atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html#background",
+    "href": "index.html#background",
+    "title": "MESA-UKB-LVAtlas",
+    "section": "Background",
+    "text": "Background\nStatistical shape atlases have been used in large-cohort studies to investigate relationships between heart shape and risk factors. The generalisability of these relationships between cohorts is unknown. The aims of this study were to compare left ventricular (LV) shapes in patients with differing cardiovascular risk factor profiles from two cohorts and to investigate whether LV shape scores generated with respect to a reference cohort can be directly used to study shape differences in another cohort.",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html#methods",
+    "href": "index.html#methods",
+    "title": "MESA-UKB-LVAtlas",
+    "section": "Methods",
+    "text": "Methods\nTwo cardiac MRI cohorts were included: 2106 participants (median age: 65 years, 54% women) from the Multi-Ethnic Study of Atherosclerosis (MESA) and 2960 participants (median age: 64 years, 52% women) from the UK Biobank (UKB) study. LV shape atlases were constructed from 3D LV models derived from expert-drawn contours from separate core labs. Atlases were considered generalisable for a risk factor if the area under the receiver operating characteristic curves (AUC) were not significantly different (p&gt;0.05) between internal (within-cohort) and external (cross-cohort) cases.",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html#results",
+    "href": "index.html#results",
+    "title": "MESA-UKB-LVAtlas",
+    "section": "Results",
+    "text": "Results\nLV mass and volume indices were differed significantly between cohorts,even in age-matched and sex-matched cases without risk factors, partly reflecting different core lab analysis protocols. For the UKB atlas, internal and external discriminative performance were not significantly different for hypertension (AUC: 0.77 vs 0.76, p=0.37), diabetes (AUC: 0.79 vs 0.77, p=0.48), hypercholesterolaemia (AUC: 0.76 vs 0.79, p=0.38)and smoking (AUC: 0.69 vs 0.67, p=0.18). For the MESA atlas, diabetes (AUC: 0.79 vs 0.74, p=0.09) and hypercholesterolaemia (AUC: 0.75 vs 0.70, p=0.10) were not significantly different. Both atlases showed significant differences for obesity.",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "index.html#conclusions",
+    "href": "index.html#conclusions",
+    "title": "MESA-UKB-LVAtlas",
+    "section": "Conclusions",
+    "text": "Conclusions\nThe MESA and UKB atlases demonstrated good generalisability for diabetes and hypercholesterolaemia, without requiring corrections for differences in mass and volume. Significant differences in obesity may be due to different relationships between obesity and heart shapes between cohorts.",
     "crumbs": [
       "About"
     ]

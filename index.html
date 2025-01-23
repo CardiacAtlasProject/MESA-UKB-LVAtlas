@@ -142,6 +142,14 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about">About</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link" data-scroll-target="#abstract">Abstract</a>
+  <ul class="collapse">
+  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><strong>Background</strong></a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><strong>Methods</strong></a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><strong>Results</strong></a></li>
+  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions"><strong>Conclusions</strong></a></li>
+  </ul></li>
+  <li><a href="#source-codes" id="toc-source-codes" class="nav-link" data-scroll-target="#source-codes">Source codes</a></li>
   <li><a href="#data-availability" id="toc-data-availability" class="nav-link" data-scroll-target="#data-availability">Data availability</a></li>
   <li><a href="#funding" id="toc-funding" class="nav-link" data-scroll-target="#funding">Funding</a></li>
   </ul>
@@ -183,17 +191,45 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="about" class="level1 unnumbered">
 <h1 class="unnumbered">About</h1>
-<p>This online notebook details atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:</p>
+<p>This online notebook details code implementation for the atlas-based shape score analysis conducted for the comparison between two left ventricular (LV) atlases derived from MESA and UK Biobank cohorts. It serves as an online source code material for the following paper:</p>
 <div class="callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p>Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, “Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank”, <em>in review</em>.</p>
+<p>Avan Suinesiaputra, Kathleen Gilbert, Charlène Mauger, David A Bluemke, Colin Wu, Nay Aung, Stefan Neubauer, Stefan Piechnik, Steffen E Petersen, Joao A Lima, Bharath Ambale-Venkatesh, and Alistair Young, “Relationship between Left Ventricular Shape and Cardiovascular Risk Factors: Comparison between the Multi-Ethnic Study of Atherosclerosis and UK Biobank”, <em>Heart</em> (2025).</p>
+<p>doi: <a href="https://doi.org/10.1136/heartjnl-2024-324658">10.1136/heartjnl-2024-324658</a></p>
 </div>
 </div>
 </div>
+</section>
+<section id="abstract" class="level1">
+<h1>Abstract</h1>
+<section id="background" class="level2">
+<h2 class="anchored" data-anchor-id="background"><strong>Background</strong></h2>
+<p>Statistical shape atlases have been used in large-cohort studies to investigate relationships between heart shape and risk factors. The generalisability of these relationships between cohorts is unknown. The aims of this study were to compare left ventricular (LV) shapes in patients with differing cardiovascular risk factor profiles from two cohorts and to investigate whether LV shape scores generated with respect to a reference cohort can be directly used to study shape differences in another cohort.</p>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods"><strong>Methods</strong></h2>
+<p>Two cardiac MRI cohorts were included: 2106 participants (median age: 65 years, 54% women) from the Multi-Ethnic Study of Atherosclerosis (MESA) and 2960 participants (median age: 64 years, 52% women) from the UK Biobank (UKB) study. LV shape atlases were constructed from 3D LV models derived from expert-drawn contours from separate core labs. Atlases were considered generalisable for a risk factor if the area under the receiver operating characteristic curves (AUC) were not significantly different (p&gt;0.05) between internal (within-cohort) and external (cross-cohort) cases.</p>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results"><strong>Results</strong></h2>
+<p>LV mass and volume indices were differed significantly between cohorts,even in age-matched and sex-matched cases without risk factors, partly reflecting different core lab analysis protocols. For the UKB atlas, internal and external discriminative performance were not significantly different for hypertension (AUC: 0.77 vs 0.76, p=0.37), diabetes (AUC: 0.79 vs 0.77, p=0.48), hypercholesterolaemia (AUC: 0.76 vs 0.79, p=0.38)and smoking (AUC: 0.69 vs 0.67, p=0.18). For the MESA atlas, diabetes (AUC: 0.79 vs 0.74, p=0.09) and hypercholesterolaemia (AUC: 0.75 vs 0.70, p=0.10) were not significantly different. Both atlases showed significant differences for obesity.</p>
+</section>
+<section id="conclusions" class="level2">
+<h2 class="anchored" data-anchor-id="conclusions"><strong>Conclusions</strong></h2>
+<p>The MESA and UKB atlases demonstrated good generalisability for diabetes and hypercholesterolaemia, without requiring corrections for differences in mass and volume. Significant differences in obesity may be due to different relationships between obesity and heart shapes between cohorts.</p>
+</section>
+</section>
+<section id="source-codes" class="level1">
+<h1>Source codes</h1>
+<ol type="1">
+<li><a href="./lvatlas.html">Generating LV shape atlases</a> (MATLAB)</li>
+<li><a href="./training.html">Training Partial Least Square Regression models</a> (R)</li>
+<li><a href="./validation.html">Internal and external validations</a> (R)</li>
+</ol>
 </section>
 <section id="data-availability" class="level1">
 <h1>Data availability</h1>
